@@ -1,5 +1,7 @@
+
 module Jekyll
-  module Paginate
+  module Multi
+    module Paginate
     class MultiPaginate < Page
       def initialize(site, base, dir, pagepath, useindex, instance)
         @site = site
@@ -84,6 +86,7 @@ module Jekyll
           end
         end
       end
+    end
     end
   end
 end
