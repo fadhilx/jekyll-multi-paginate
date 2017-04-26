@@ -29,6 +29,7 @@ module Jekyll
         return dirn
       end
       def generate(site)
+        puts("Running Jekyll Multi Peginate")
         site.pages.each do |page|
           if page.data.has_key?"paginate"
             file = page.url
