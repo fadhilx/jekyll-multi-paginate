@@ -1,4 +1,5 @@
 require "jekyll/multi/paginate/version"
+require "jekyll/multi/paginate/pagination"
 
 module Jekyll
   module Multi
