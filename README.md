@@ -1,4 +1,4 @@
-# Jekyll::Multi::Paginate
+# Jekyll-Multi-Paginate
 
 Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination plugins before, but this plugins allows you to add pagination function to multiple Jekyll page
 
@@ -7,6 +7,13 @@ Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination p
 There has Two ways to install this plugins to your jekyll pages
 
 #### Method 1
+
+1. Clone this repository
+2. Copy `.rb` file into your `_plugins` folder
+3. To initial `paginate: ` to your specified page and set the value to maximum number of post for each pages
+4. ready to use attribute that stored under `page.pagination`
+
+#### Method 2
 
 Add this line to your application's Gemfile:
 
@@ -18,19 +25,14 @@ And then execute:
 
     $ bundle
 
-**OR**
+#### Method 3
 
 Install it yourself as:
 
     $ gem install jekyll-multi-paginate
 
-And then, add this attribute to _config.yml
+And then, add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribute in your `_config.yml` file.
 
-#### Method 2
-
-1. Copy `.rb` file to your `_plugins` folder
-2. To initial `paginate: ` to your specified page and set the value to maximum number of post for each pages
-3. ready to use attribute that stored under `page.pagination`
 
 ## Usage
 
