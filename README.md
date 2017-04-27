@@ -75,7 +75,7 @@ lets say that you have `10` posts and you put `paginate: 3` without `paginate_pa
 |   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
 |   ├── 2009-04-26-barcamp-boston-4-roundup.md
 |   ├── 20010-05-28-barcamp-boston-5-roundup.md
-|   ... # 7 more posst
+|   !.. # 7 more posst
 |
 ├── index.html
 └── blog.html
