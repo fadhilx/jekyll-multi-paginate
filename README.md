@@ -67,7 +67,7 @@ This attributes will stored under `page.pagination`:
 ## Examples
 here is the example code that you can add to your page
 
-```ruby
+```django
 ---
 paginate: 3
 ---
