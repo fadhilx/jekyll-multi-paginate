@@ -3,7 +3,7 @@ module Jekyll
   module Multi
     module Paginate
     class MultiPaginate < Page
-      def initialize(site, base, dir, pagepath, useindex, instance)
+      def initialize(site, base, dir, pagepath, useindex, pagination)
         @site = site
         @base = base
         @dir = dir
@@ -14,7 +14,7 @@ module Jekyll
         end
         self.process(@name)
         self.read_yaml(base, pagepath)
-        self.data['instance']=instance
+        self.data['pagination']=pagination
         self.data.delete "paginate"
       end
     end
@@ -62,7 +62,7 @@ module Jekyll
               [*1..toloop.ceil].each do |x|
                 pagepaths.push(toPagePath(dir, x))
               end
-              instance = {
+              pagination = {
                 "nums" => [*1..toloop.ceil],
                 "posts" => posts,
                 "paths" => pagepaths,
@@ -70,19 +70,18 @@ module Jekyll
                 "paginate_path" => "/"+dir+"/".gsub("//","/"),
                 "total_post" => postlen,
                 "current_num" => i,
-                "total_page_num" => toloop.ceil,
                 "prev_path" => ((i-1)!=0)? toPagePath(dir, i-1):nil,
                 "next_path" => ((i+1)<=toloop.ceil)? toPagePath(dir, i+1):nil,
                 "prev_num" => ((i-1)!=0)? i-1:nil,
                 "next_num" => ((i+1)<=toloop.ceil)? i+1:nil,
               }
               if i==1
-                site.pages << MultiPaginate.new(site, site.source, pagepath, page.path, false, instance)
+                site.pages << MultiPaginate.new(site, site.source, pagepath, page.path, false, pagination)
                 if !(site.permalink_style.downcase=="pretty")
-                  site.pages << MultiPaginate.new(site, site.source, nametofolderpath, page.path, true, instance)
+                  site.pages << MultiPaginate.new(site, site.source, nametofolderpath, page.path, true, pagination)
                 end
               end
-              site.pages << MultiPaginate.new(site, site.source, ndir, page.path, true, instance)
+              site.pages << MultiPaginate.new(site, site.source, ndir, page.path, true, pagination)
             end
           end
         end
