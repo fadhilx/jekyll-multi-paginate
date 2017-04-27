@@ -1,6 +1,7 @@
 # Jekyll-Multi-Paginate
 
-Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination plugins before, but this plugins allows you to add pagination function to multiple Jekyll page
+Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination plugins before, but this plugins allows you to add pagination function to multiple Jekyll page. this also allow you to show only for same attribute
+
 
 ## Installation
 
@@ -45,6 +46,8 @@ Here is the three attribute and its function that you can/need to put to your pa
 |`page_path`		|Url Patern(Path)				|will take the value as url format where `:num` is the pagination number. Default value: `/filname/page:num/`|
 |`paginate_onlykey`	|Post stricted attribute(Atr)	|If set to value to any page attribute, the page will generate for post that contain that attribute with the same value only. Leave blank or set to `all` to generate for all post|
 
+After you run put `paginate` to your page, this plugins will generate `.html` file for each page.
+
 This attributes will stored under `page.pagination`:
 
 |Attributes		|Description												|
@@ -60,6 +63,45 @@ This attributes will stored under `page.pagination`:
 |`next_path`	|next page path												|
 |`prev_num`		|previous page number										|
 |`next_num`		|next page number											|
+
+## Examples
+here is the example code that you can add to your page
+
+```ruby
+---
+paginate: 3
+---
+{% for post in page.instance.posts%}
+<div>
+	<h4><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
+	<h5>{{post.date | date_to_string }} —</h5>
+	<p class="postdesc">{{post.meta}}</p>
+</div>
+{% endfor %}
+<div>
+	{%if page.instance.prev_path%}
+	<a href="{{site.baseurl}}{{page.instance.prev_path}}">Prev</a>
+	{%else%}
+	<span>Prev</span>
+	{%endif%}
+	{%if page.instance.paginate_num>1%}
+		{%for i in page.instance.nums%}
+			{%assign index = i | minus: 1%}
+			{%if i==page.instance.current_num%}
+				<span>{{i}}</span>
+			{%else%}
+				<a href="{{site.baseurl}}{{page.instance.paths[index]}}">{{i}}</a>
+			{%endif%}
+		{%endfor%}
+	{%endif%}
+	{%if page.instance.next_path%}
+		<a href="{{site.baseurl}}{{page.instance.next_path}}">Next</a>
+	{%else%}
+		<span>Next</span>
+	{%endif%}
+</div>
+
+```
 
 ## Contributing
 
