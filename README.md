@@ -10,8 +10,7 @@ There has Two ways to install this plugins to your jekyll pages
 
 1. Clone this repository
 2. Copy `.rb` file into your `_plugins` folder
-3. To initial `paginate: ` to your specified page and set the value to maximum number of post for each pages
-4. ready to use attribute that stored under `page.pagination`
+4. ready to initial
 
 #### Method 2
 
@@ -31,12 +30,14 @@ Install it yourself as:
 
     $ gem install jekyll-multi-paginate
 
-And then, add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribute in your `_config.yml` file.
+And then add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribute in your `_config.yml` file.
 
 
 ## Usage
 
-1. Three attribute and its function that you can/need to put to your page Front Matter to make it works as you want
+To initial your page as pagination page put attribute `paginate: ` to your specified page Front Matter attribute and set the value to maximum number of post for each pages
+
+Here is the three attribute and its function that you can/need to put to your page Front Matter to make it works as you want
 
 |Attributes			|Accepted Value/Type			|Function/Description	|
 |-------------------|-------------------------------|-----------------------|
@@ -44,7 +45,7 @@ And then, add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribu
 |`page_path`		|Url Patern(Path)				|will take the value as url format where `:num` is the pagination number. Default value: `/filname/page:num/`|
 |`paginate_onlykey`	|Post stricted attribute(Atr)	|If set to value to any page attribute, the page will generate for post that contain that attribute with the same value only. Leave blank or set to `all` to generate for all post|
 
-2. This attributes will stored under `page.pagination`:
+This attributes will stored under `page.pagination`:
 
 |Attributes		|Description												|
 |---------------|-----------------------------------------------------------|
@@ -60,15 +61,9 @@ And then, add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribu
 |`prev_num`		|previous page number										|
 |`next_num`		|next page number											|
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/jekyll-multi-paginate. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/fadhilnapis/jekyll-multi-paginate. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
