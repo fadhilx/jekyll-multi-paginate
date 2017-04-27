@@ -65,6 +65,23 @@ This attributes will stored under `page.pagination`:
 |`next_num`		|next page number											|
 
 ## Examples
+#### sturcture
+lets say that you have `10` posts and you put `paginate: 3` without `paginate_path` in blog.html
+
+```
+.
+├── _config.yml
+├── _posts
+|   ├── 2007-10-29-why-every-programmer-should-play-nethack.md
+|   ├── 2009-04-26-barcamp-boston-4-roundup.md
+|   ├── 20010-05-28-barcamp-boston-5-roundup.md
+|   ... # 7 more posst
+|
+├── index.html
+└── blog.html
+```
+
+#### code
 here is the example code that you can add to your page
 
 ```django
@@ -105,6 +122,43 @@ paginate: 3
 </div>
 
 ```
+
+#### Result
+
+Code above will generate this structure for `permalink: pretty`:
+```
+_site/
+|
+├── blog/
+|   ├── index.html
+|   ├── page1/
+|   |   └── index.html	# have 3 posts
+|   ├── page2/
+|   |   └── index.html	# have 3 posts
+|   ├── page3/
+|   |   └── index.html	# have 3 posts
+|   └── page4/
+|       └── index.html	# have 1 posts
+└── index.html
+```
+
+this structure for `permalink: date`:
+```
+_site/
+|
+├── blog/
+|   ├── page1/
+|   |   └── index.html	# have 3 posts
+|   ├── page2/
+|   |   └── index.html	# have 3 posts
+|   ├── page3/
+|   |   └── index.html	# have 3 posts
+|   └── page4/
+|       └── index.html	# have 1 posts
+├── blog.html
+└── index.html
+```
+
 
 ## Contributing
 
