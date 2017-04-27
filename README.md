@@ -71,7 +71,7 @@ here is the example code that you can add to your page
 ---
 paginate: 3
 ---
-{% for post in page.instance.posts%}
+{% for post in page.pagination.posts%}
 <div>
 	<h4><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
 	<h5>{{post.date | date_to_string }} —</h5>
@@ -79,23 +79,23 @@ paginate: 3
 </div>
 {% endfor %}
 <div>
-	{%if page.instance.prev_path%}
-	<a href="{{site.baseurl}}{{page.instance.prev_path}}">Prev</a>
+	{%if page.pagination.prev_path%}
+	<a href="{{site.baseurl}}{{page.pagination.prev_path}}">Prev</a>
 	{%else%}
 	<span>Prev</span>
 	{%endif%}
-	{%if page.instance.paginate_num>1%}
-		{%for i in page.instance.nums%}
+	{%if page.pagination.paginate_num>1%}
+		{%for i in page.pagination.nums%}
 			{%assign index = i | minus: 1%}
-			{%if i==page.instance.current_num%}
+			{%if i==page.pagination.current_num%}
 				<span>{{i}}</span>
 			{%else%}
-				<a href="{{site.baseurl}}{{page.instance.paths[index]}}">{{i}}</a>
+				<a href="{{site.baseurl}}{{page.pagination.paths[index]}}">{{i}}</a>
 			{%endif%}
 		{%endfor%}
 	{%endif%}
-	{%if page.instance.next_path%}
-		<a href="{{site.baseurl}}{{page.instance.next_path}}">Next</a>
+	{%if page.pagination.next_path%}
+		<a href="{{site.baseurl}}{{page.pagination.next_path}}">Next</a>
 	{%else%}
 		<span>Next</span>
 	{%endif%}
