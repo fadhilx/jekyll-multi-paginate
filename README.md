@@ -64,8 +64,8 @@ This attributes will stored under `page.pagination`:
 |`prev_num`		|previous page number										|
 |`next_num`		|next page number											|
 
-## Examples
-#### Sturcture
+## Examples - Basic
+#### Structure
 lets say that you have `10` posts and you add `paginate: 3` without `paginate_path` in `blog.html` Front Matter
 
 ```
@@ -141,7 +141,7 @@ _site/
 └── index.html
 ```
 
-This structure for `permalink: date`:
+This structure for not set permalink:
 ```
 _site/
 |
@@ -157,7 +157,70 @@ _site/
 ├── blog.html
 └── index.html
 ```
+## Examples - Paginate_onlykey
+#### Structure
+```
+.
+├── _config.yml
+├── _posts
+|   └──		# contain 5 post with attribute `lang: fr`, and 5 with `lang: en`
+├── index.html
+├── en.html
+├── fr.html
+├── en
+|   └── blog.html
+├── fr
+|   └── blog.html
+```
 
+#### code
+in fr/blog.html
+```yaml
+---
+lang: fr
+paginate: 3
+paginate_onlykey: lang
+---
+<!-- any code-->
+```
+
+in fr/blog.html
+```yaml
+---
+lang: en
+paginate: 3
+paginate_onlykey: lang
+---
+<!-- any code-->
+```
+
+
+#### Result
+Code above will generate this structure for 10 posts with config `permalink: pretty`:
+```
+_site/
+├── en/
+|   ├── index.html
+|   └── blog/
+|       ├── index.html
+|       ├── page1/
+|       |   └── index.html	# have 3 posts with post.lang = en
+|       ├── page2/
+|           └── index.html	# have 2 posts with post.lang = en
+├── fr/
+|   ├── index.html
+|   └── blog/
+|       ├── index.html
+|       ├── page1/
+|       |   └── index.html	# have 3 posts with post.lang = fr
+|       └── page2/
+|           └── index.html	# have 2 posts with post.lang = fr
+└── index.html
+```
+### Plugins on GitHub Pages
+GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.
+
+You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.
 
 ## Contributing
 
