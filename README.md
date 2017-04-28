@@ -165,15 +165,17 @@ lets say that you have multiple language. With this plugin you will be able to c
 ```
 .
 ├── _config.yml
+├── _includes
+|   └── blog.html
 ├── _posts
 |   └──		# contain 5 post with attribute `lang: fr`, and 5 with `lang: en`
-├── index.html
-├── en.html
-├── fr.html
 ├── en
 |   └── blog.html
 ├── fr
 |   └── blog.html
+├── index.html
+├── en.html
+└── fr.html
 ```
 
 #### Code
@@ -184,7 +186,7 @@ lang: fr
 paginate: 3
 paginate_onlykey: lang
 ---
-<!-- any code-->
+{%include blog.html%}
 ```
 
 in fr/blog.html
@@ -194,7 +196,43 @@ lang: en
 paginate: 3
 paginate_onlykey: lang
 ---
-<!-- any code-->
+{%include blog.html%}
+```
+
+in _includes/blog.html
+```django
+<!-- post loop -->
+{% for post in page.pagination.posts%}
+   <div>
+      <h4><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
+      <h5>{{post.date | date_to_string }} —</h5>
+      <p class="postdesc">{{post.meta}}</p>
+   </div>
+{% endfor %}
+
+<!-- post pagination -->
+<div>
+   {%if page.pagination.prev_path%}
+      <a href="{{site.baseurl}}{{page.pagination.prev_path}}">Prev</a>
+   {%else%}
+      <span>Prev</span>
+   {%endif%}
+   {%if page.pagination.paginate_num>1%}
+      {%for i in page.pagination.nums%}
+         {%assign index = i | minus: 1%}
+         {%if i==page.pagination.current_num%}
+            <span>{{i}}</span>
+         {%else%}
+            <a href="{{site.baseurl}}{{page.pagination.paths[index]}}">{{i}}</a>
+         {%endif%}
+      {%endfor%}
+   {%endif%}
+   {%if page.pagination.next_path%}
+      <a href="{{site.baseurl}}{{page.pagination.next_path}}">Next</a>
+   {%else%}
+      <span>Next</span>
+   {%endif%}
+</div>
 ```
 
 
