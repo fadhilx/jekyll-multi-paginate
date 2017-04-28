@@ -173,7 +173,7 @@ _site/
 |   └── blog.html
 ```
 
-#### code
+#### Code
 in fr/blog.html
 ```yaml
 ---
@@ -217,10 +217,13 @@ _site/
 |           └── index.html	# have 2 posts with post.lang = fr
 └── index.html
 ```
-### Plugins on GitHub Pages
-GitHub Pages is powered by Jekyll. However, all Pages sites are generated using the --safe option to disable custom plugins for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.
+
+## Plugins on GitHub Pages
+[GitHub Pages](https://pages.github.com/) is powered by [Jekyll](https://github.com/jekyll). However, all Pages sites are generated using the --safe option to disable [custom plugins](https://jekyllrb.com/docs/plugins/) for security reasons. Unfortunately, this means your plugins won’t work if you’re deploying to GitHub Pages.
 
 You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.
+
+Move `.git` folder to generated `_site` folder, then add, commit and push to your Github.
 
 ## Contributing
 
@@ -229,5 +232,5 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fadhil
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+This plugin is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
