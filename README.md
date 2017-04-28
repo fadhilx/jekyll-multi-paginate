@@ -158,6 +158,9 @@ _site/
 └── index.html
 ```
 ## Examples - Paginate_onlykey
+lets say that you have multiple language. With this plugin you will be able to create different pagination. 
+
+*This function will be improve from version to version*
 #### Structure
 ```
 .
