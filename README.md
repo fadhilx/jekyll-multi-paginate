@@ -36,9 +36,9 @@ And then add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribut
 
 ## Usage
 
-To initial your page as pagination page put attribute `paginate: ` to your specified page Front Matter attribute and set the value to maximum number of post for each pages
+To initial your page as pagination page add attribute `paginate: ` to your specified page Front Matter attribute and set the value to maximum number of post for each pages
 
-Here is the three attribute and its function that you can/need to put to your page Front Matter to make it works as you want
+Here is the three attribute and its function that you can/need to add to your page Front Matter to make it works as you want
 
 |Attributes			|Accepted Value/Type			|Function/Description	|
 |-------------------|-------------------------------|-----------------------|
@@ -46,7 +46,7 @@ Here is the three attribute and its function that you can/need to put to your pa
 |`page_path`		|Url Patern(Path)				|will take the value as url format where `:num` is the pagination number. Default value: `/filname/page:num/`|
 |`paginate_onlykey`	|Post stricted attribute(Atr)	|If set to value to any page attribute, the page will generate for post that contain that attribute with the same value only. Leave blank or set to `all` to generate for all post|
 
-After you run put `paginate` to your page, this plugins will generate `.html` file for each page.
+After you run add `paginate` to your page, this plugins will generate `.html` file for each page.
 
 This attributes will stored under `page.pagination`:
 
@@ -66,7 +66,7 @@ This attributes will stored under `page.pagination`:
 
 ## Examples
 #### Sturcture
-lets say that you have `10` posts and you put `paginate: 3` without `paginate_path` in `blog.html` Front Matter
+lets say that you have `10` posts and you add `paginate: 3` without `paginate_path` in `blog.html` Front Matter
 
 ```
 .
