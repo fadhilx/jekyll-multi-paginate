@@ -28,6 +28,48 @@ module Jekyll
         end
         return dirn
       end
+      def getpost (posts,page,rulekey,orand)
+        isor =orand=="or"
+        isand =orand=="and"
+        oncatpost=[]
+        posts.each do |post|
+          if rulekey.is_a?(String)
+            if (post.data[rulekey]==page.data[rulekey] || rulekey=="all") && rulekey!=""
+              oncatpost << post
+            end
+          elsif rulekey.is_a?(Array)
+            isalltrue = true
+            for i in 0..rulekey.length-1
+              oky = rulekey[i]
+              if post.data[oky]==page.data[oky] && oky!=""
+                isalltrue=true
+                break if isor
+              else
+                isalltrue=false
+                break if isand
+              end
+            end
+            if isalltrue
+              oncatpost << post
+            end
+          elsif rulekey.is_a?(Hash)
+            isalltrue = true
+            rulekey.each do |key, val|
+              if post.data[key]==val
+                isalltrue = true
+                break if isor
+              else
+                isalltrue = false
+                break if isand
+              end
+            end
+            if isalltrue
+              oncatpost << post
+            end
+          end
+        end
+        return oncatpost
+      end
       def generate(site)
         puts("Running Jekyll Multi Peginate")
         site.pages.each do |page|
@@ -41,18 +83,16 @@ module Jekyll
             end
             postmax = page.data['paginate']
             onlykey = page.data['paginate_onlykey'] || "all"
+            atleastkey = page.data['paginate_atleastkey'] || "all"
             dir = site.config['page_path'] || nametofolderpath+"/page:num"
             if !dir.include?':num'
               dir+=":num"
             end
-            oncatpost = []
+            oncatpost = site.posts.docs
             postlen = 0
-            site.posts.docs.each do |post|
-              if (post.data[onlykey]==page.data[onlykey] || onlykey=="all") && onlykey!=""
-                oncatpost << post
-                postlen+=1
-              end
-            end
+            oncatpost=getpost(oncatpost,page,onlykey,'and')
+            oncatpost=getpost(oncatpost,page,atleastkey,'or')
+            postlen = oncatpost.length
             toloop = postlen.to_f/postmax.to_f
             for i in 1..toloop.ceil
               posts = oncatpost[(i-1)*postmax,postmax]
