@@ -2,6 +2,23 @@
 
 Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination plugins before, but this plugins allows you to add pagination function to multiple Jekyll page. this also allow you to show only for same attribute
 
+#### Jump to:
+- [Installation](#installation)
+   - [Method 1](#method-1)
+   - [Method 2](#method-2)
+   - [Method 2](#method-2)
+- [Usage](#usage)
+- [Examples - Basic](#examples---basic)
+   - [Structure](#structure)
+   - [Code](#code)
+   - [Result](#result)
+- [Examples - `paginate_onlykey` and `paginate_atleastkey`](#Examples---paginate_onlykey-and-paginate_atleastkey)
+   - [Structure](#structure-1)
+   - [Code](#code-1)
+   - [Result](#result-1)
+- [Plugins on GitHub Pages](#plugins-on-github-pages)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Installation
 
@@ -12,6 +29,7 @@ There has Two ways to install this plugins to your jekyll pages
 1. Clone this repository
 2. Copy `.rb` file into your `_plugins` folder
 4. ready to initial
+
 
 #### Method 2
 
@@ -25,7 +43,7 @@ And then execute:
 
     $ bundle
 
-#### Method 3
+#### Method 2
 
 Install it yourself as:
 
@@ -44,7 +62,8 @@ Here is the three attribute and its function that you can/need to add to your pa
 |-------------------|-------------------------------|-----------------------|
 |`paginate`			|Maximum post(Number)			|Max post per page. this attribute will initial that page as pagination page and will give the `page` an attribute called `pagination`. Required to generate pagination page|
 |`page_path`		|Url Patern(Path)				|will take the value as url format where `:num` is the pagination number. Default value: `/filname/page:num/`|
-|`paginate_onlykey`	|Post stricted attribute(Atr)	|If set to value to any page attribute, the page will generate for post that contain that attribute with the same value only. Leave blank or set to `all` to generate for all post|
+|`paginate_onlykey`  |String/Array/Hash |If set value to any post attribute, the `page.pagination.posts` will return all post that has same page attribute and value only. If set to array, plugin will check if all array has the same value with the page. If set to hash, plugin will check if all hash has the same value with the post.|
+|`paginate_atleastkey`	|String/Array/Hash |If set value to any post attribute, the `page.pagination.posts` will return all post that has same page same attribute and value only. If set to array, plugin will check if atleast one array has the same value with the page. If set to hash, plugin will check if atleast one hash has the same value with the post.|
 
 After you run add `paginate` to your page, this plugins will generate `.html` file for each page.
 
@@ -57,7 +76,7 @@ This attributes will stored under `page.pagination`:
 |`paths`		|list of pagination path that has been generated. sorted by pagenumber|
 |`paginate_num`	|total pagination pages										|
 |`paginate_path`|pagination link patern that has been set or generated(if not set)|
-|`total_post`	|total post available in post list that only contain same attribute with you `paginate_onlykey` (if set)|
+|`total_post`	|total post available in post list depending to your rule that you add in `paginate_onlykey` or `paginate_atleastkey` (if set)|
 |`current_num`	|current post number index for each page					|
 |`prev_path`	|previous page path											|
 |`next_path`	|next page path												|
@@ -157,10 +176,9 @@ _site/
 ├── blog.html
 └── index.html
 ```
-## Examples - Paginate_onlykey
-lets say that you have multiple language. With this plugin you will be able to create different pagination. 
 
-*This function will be improve from version to version*
+## Examples - paginate_onlykey and paginate_atleastkey
+lets say that you have multiple language. With this plugin you will be able to create different pagination With different page attribute rule
 #### Structure
 ```
 .
@@ -168,7 +186,7 @@ lets say that you have multiple language. With this plugin you will be able to c
 ├── _includes
 |   └── blog.html
 ├── _posts
-|   └──		# contain 5 post with attribute `lang: fr`, and 5 with `lang: en`
+|   └──     # contain 5 post with attribute `lang: fr`, and 5 with `lang: en`
 ├── en
 |   └── blog.html
 ├── fr
@@ -179,6 +197,12 @@ lets say that you have multiple language. With this plugin you will be able to c
 ```
 
 #### Code
+here is multiple language code example
+
+code in `_includes/blog.html`
+same as in [Examples - Basic](#code)'s code without any attribute
+
+##### Here is example for `paginate_onlykey` in String:
 in fr/blog.html
 ```yaml
 ---
@@ -198,41 +222,51 @@ paginate_onlykey: lang
 ---
 {%include blog.html%}
 ```
+*OR, you can set `paginate_onlykey` in dictionary*
 
-in _includes/blog.html
-```django
-<!-- post loop -->
-{% for post in page.pagination.posts%}
-   <div>
-      <h4><a href="{{site.baseurl}}{{post.url}}">{{post.title}}</a></h4>
-      <h5>{{post.date | date_to_string }} —</h5>
-      <p class="postdesc">{{post.meta}}</p>
-   </div>
-{% endfor %}
+in fr/blog.html
+```yaml
+---
+paginate: 3
+paginate_onlykey:
+  lang: fr
+---
+{%include blog.html%}
+```
 
-<!-- post pagination -->
-<div>
-   {%if page.pagination.prev_path%}
-      <a href="{{site.baseurl}}{{page.pagination.prev_path}}">Prev</a>
-   {%else%}
-      <span>Prev</span>
-   {%endif%}
-   {%if page.pagination.paginate_num>1%}
-      {%for i in page.pagination.nums%}
-         {%assign index = i | minus: 1%}
-         {%if i==page.pagination.current_num%}
-            <span>{{i}}</span>
-         {%else%}
-            <a href="{{site.baseurl}}{{page.pagination.paths[index]}}">{{i}}</a>
-         {%endif%}
-      {%endfor%}
-   {%endif%}
-   {%if page.pagination.next_path%}
-      <a href="{{site.baseurl}}{{page.pagination.next_path}}">Next</a>
-   {%else%}
-      <span>Next</span>
-   {%endif%}
-</div>
+in fr/blog.html
+```yaml
+---
+paginate: 3
+paginate_onlykey:
+  lang: en
+---
+{%include blog.html%}
+```
+
+
+##### Here is example for `paginate_atleastkey` in dictionary:
+*this attribute also can be in string or array:*
+in fr/blog.html
+```yaml
+---
+paginate: 3
+paginate_atleastkey:
+  lang: fr
+  type: post
+---
+{%include blog.html%}
+```
+
+in fr/blog.html
+```yaml
+---
+paginate: 3
+paginate_atleastkey:
+  lang: en
+  category: general
+---
+{%include blog.html%}
 ```
 
 
