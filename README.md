@@ -24,33 +24,9 @@ Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination p
 
 There has Two ways to install this plugins to your jekyll pages
 
-#### Method 1
-
 1. Clone this repository
 2. Copy `.rb` file into your `_plugins` folder
-4. ready to initial
-
-
-#### Method 2
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'jekyll-multi-paginate'
-```
-
-And then execute:
-
-    $ bundle
-
-#### Method 2
-
-Install it yourself as:
-
-    $ gem install jekyll-multi-paginate
-
-And then add `jekyll-multi-paginate` to your `plugins` or `plugins_dir` attribute in your `_config.yml` file.
-
+3. ready to initial
 
 ## Usage
 
