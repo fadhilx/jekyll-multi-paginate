@@ -1,9 +1,9 @@
-<!-- {% raw %} -->
 
 # Jekyll-Multi-Paginate
 
 Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination plugins before, but this plugins allows you to add pagination function to multiple Jekyll page. this also allow you to show only for same attribute
 
+<!-- {% raw %} -->
 #### Jump to:
 - [Installation](#installation)
 - [Usage](#usage)
@@ -11,7 +11,7 @@ Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination p
    - [Structure](#structure)
    - [Code](#code)
    - [Result](#result)
-- [Examples - `paginate_onlykey` and `paginate_atleastkey`](#Examples---paginate_onlykey-and-paginate_atleastkey)
+- [Examples - `paginate_onlykey` and `paginate_atleastkey`](#examples---paginate_onlykey-and-paginate_atleastkey)
    - [Structure](#structure-1)
    - [Code](#code-1)
    - [Result](#result-1)
@@ -274,7 +274,7 @@ _site/
 
 You can still use GitHub Pages to publish your site, but you’ll need to convert the site locally and push the generated static files to your GitHub repository instead of the Jekyll source files.
 
-Move `.git` folder to generated `_site` folder, then add, commit and push to your Github.
+Move `.git` folder to the generated `_site` folder, then add, commit and push to your Github.
 
 ## Contributing
 
