@@ -37,21 +37,21 @@ module Jekyll
             if (post.data[rulekey]==page.data[rulekey] || rulekey=="all") && rulekey!=""
               oncatpost << post
             end
-          elsif rulekey.is_a?(Array)
-            isalltrue = true
-            for i in 0..rulekey.length-1
-              oky = rulekey[i]
-              if post.data[oky]==page.data[oky] && oky!=""
-                isalltrue=true
-                break if isor
-              else
-                isalltrue=false
-                break if isand
-              end
-            end
-            if isalltrue
-              oncatpost << post
-            end
+          # elsif rulekey.is_a?(Array)
+          #   isalltrue = true
+          #   for i in 0..rulekey.length-1
+          #     oky = rulekey[i]
+          #     if post.data[oky]==page.data[oky] && oky!=""
+          #       isalltrue=true
+          #       break if isor
+          #     else
+          #       isalltrue=false
+          #       break if isand
+          #     end
+          #   end
+          #   if isalltrue
+          #     oncatpost << post
+          #   end
           elsif rulekey.is_a?(Hash)
             isalltrue = true
             rulekey.each do |key, val|
@@ -70,8 +70,27 @@ module Jekyll
         end
         return oncatpost
       end
+      def getpostbyfm(ff,page,atleastkey,orand)
+        isor =orand=="or"
+        isand =orand=="and"
+        oncatpost=ff
+        if atleastkey.is_a?(Array)
+          for i in 0..atleastkey.length-1
+            if isand
+              oncatpost&=getpost(oncatpost,page,atleastkey[i],orand)
+            end
+            if isor
+              oncatpost+=getpost(oncatpost,page,atleastkey[i],orand)
+            end
+          end
+          oncatpost = oncatpost.uniq
+        else
+          oncatpost=getpost(oncatpost,page,atleastkey,orand)
+        end
+        return oncatpost
+      end
       def generate(site)
-        puts("Running Jekyll Multi Peginate")
+        puts("Running Jekyll Multi Paginate")
         site.pages.each do |page|
           if page.data.has_key?"paginate"
             file = page.url
@@ -90,8 +109,8 @@ module Jekyll
             end
             oncatpost = site.posts.docs
             postlen = 0
-            oncatpost=getpost(oncatpost,page,onlykey,'and')
-            oncatpost=getpost(oncatpost,page,atleastkey,'or')
+            oncatpost = getpostbyfm(oncatpost,page,onlykey,'and')
+            oncatpost = getpostbyfm(oncatpost,page,atleastkey,'or')
             postlen = oncatpost.length
             toloop = postlen.to_f/postmax.to_f
             for i in 1..toloop.ceil

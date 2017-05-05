@@ -1,12 +1,11 @@
+<!-- {% raw %} -->
+
 # Jekyll-Multi-Paginate
 
 Welcome to jekyll-multi-paginate plugins. you may have found Jekyll pagination plugins before, but this plugins allows you to add pagination function to multiple Jekyll page. this also allow you to show only for same attribute
 
 #### Jump to:
 - [Installation](#installation)
-   - [Method 1](#method-1)
-   - [Method 2](#method-2)
-   - [Method 2](#method-2)
 - [Usage](#usage)
 - [Examples - Basic](#examples---basic)
    - [Structure](#structure)
@@ -34,30 +33,30 @@ To initial your page as pagination page add attribute `paginate: ` to your speci
 
 Here is the three attribute and its function that you can/need to add to your page Front Matter to make it works as you want
 
-|Attributes			|Accepted Value/Type			|Function/Description	|
+|Attributes     |Accepted Value/Type      |Function/Description |
 |-------------------|-------------------------------|-----------------------|
-|`paginate`			|Maximum post(Number)			|Max post per page. this attribute will initial that page as pagination page and will give the `page` an attribute called `pagination`. Required to generate pagination page|
-|`page_path`		|Url Patern(Path)				|will take the value as url format where `:num` is the pagination number. Default value: `/filname/page:num/`|
+|`paginate`     |Maximum post(Number)     |Max post per page. this attribute will initial that page as pagination page and will give the `page` an attribute called `pagination`. Required to generate pagination page|
+|`page_path`    |Url Patern(Path)       |will take the value as url format where `:num` is the pagination number. Default value: `/filname/page:num/`|
 |`paginate_onlykey`  |String/Array/Hash |If set value to any post attribute, the `page.pagination.posts` will return all post that has same page attribute and value only. If set to array, plugin will check if all array has the same value with the page. If set to hash, plugin will check if all hash has the same value with the post.|
-|`paginate_atleastkey`	|String/Array/Hash |If set value to any post attribute, the `page.pagination.posts` will return all post that has same page same attribute and value only. If set to array, plugin will check if atleast one array has the same value with the page. If set to hash, plugin will check if atleast one hash has the same value with the post.|
+|`paginate_atleastkey`  |String/Array/Hash |If set value to any post attribute, the `page.pagination.posts` will return all post that has same page same attribute and value only. If set to array, plugin will check if atleast one array has the same value with the page. If set to hash, plugin will check if atleast one hash has the same value with the post.|
 
 After you run add `paginate` to your page, this plugins will generate `.html` file for each page.
 
 This attributes will stored under `page.pagination`:
 
-|Attributes		|Description												|
+|Attributes   |Description                        |
 |---------------|-----------------------------------------------------------|
-|`posts`		|list of post on that have in current page					|
-|`nums`			|list of pagination number available. sorted by pagenumber	|
-|`paths`		|list of pagination path that has been generated. sorted by pagenumber|
-|`paginate_num`	|total pagination pages										|
+|`posts`    |list of post on that have in current page          |
+|`nums`     |list of pagination number available. sorted by pagenumber  |
+|`paths`    |list of pagination path that has been generated. sorted by pagenumber|
+|`paginate_num` |total pagination pages                   |
 |`paginate_path`|pagination link patern that has been set or generated(if not set)|
-|`total_post`	|total post available in post list depending to your rule that you add in `paginate_onlykey` or `paginate_atleastkey` (if set)|
-|`current_num`	|current post number index for each page					|
-|`prev_path`	|previous page path											|
-|`next_path`	|next page path												|
-|`prev_num`		|previous page number										|
-|`next_num`		|next page number											|
+|`total_post` |total post available in post list depending to your rule that you add in `paginate_onlykey` or `paginate_atleastkey` (if set)|
+|`current_num`  |current post number index for each page          |
+|`prev_path`  |previous page path                     |
+|`next_path`  |next page path                       |
+|`prev_num`   |previous page number                   |
+|`next_num`   |next page number                     |
 
 ## Examples - Basic
 #### Structure
@@ -126,13 +125,13 @@ _site/
 ├── blog/
 |   ├── index.html
 |   ├── page1/
-|   |   └── index.html	# have 3 posts
+|   |   └── index.html  # have 3 posts
 |   ├── page2/
-|   |   └── index.html	# have 3 posts
+|   |   └── index.html  # have 3 posts
 |   ├── page3/
-|   |   └── index.html	# have 3 posts
+|   |   └── index.html  # have 3 posts
 |   └── page4/
-|       └── index.html	# have 1 posts
+|       └── index.html  # have 1 posts
 └── index.html
 ```
 
@@ -142,13 +141,13 @@ _site/
 |
 ├── blog/
 |   ├── page1/
-|   |   └── index.html	# have 3 posts
+|   |   └── index.html  # have 3 posts
 |   ├── page2/
-|   |   └── index.html	# have 3 posts
+|   |   └── index.html  # have 3 posts
 |   ├── page3/
-|   |   └── index.html	# have 3 posts
+|   |   └── index.html  # have 3 posts
 |   └── page4/
-|       └── index.html	# have 1 posts
+|       └── index.html  # have 1 posts
 ├── blog.html
 └── index.html
 ```
@@ -199,6 +198,7 @@ paginate_onlykey: lang
 {%include blog.html%}
 ```
 *OR, you can set `paginate_onlykey` in dictionary*
+
 
 in fr/blog.html
 ```yaml
@@ -285,3 +285,4 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/fadhil
 
 This plugin is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 
+<!-- {% endraw %} -->
